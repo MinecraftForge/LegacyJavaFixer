@@ -1,133 +1,133 @@
-package net.minecraftforge.lex.legacyjavafixer;
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
 
 import java.io.File;
 import java.lang.reflect.Field;
-import java.net.URL;
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.ListIterator;
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
 import java.util.Map;
 
 import net.minecraft.launchwrapper.ITweaker;
-import net.minecraft.launchwrapper.Launch;
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
 import net.minecraft.launchwrapper.LaunchClassLoader;
 
 import com.google.common.base.Throwables;
-import com.google.common.primitives.Ints;
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
 
 import cpw.mods.fml.common.launcher.FMLInjectionAndSortingTweaker;
 import cpw.mods.fml.relauncher.CoreModManager;
-import cpw.mods.fml.relauncher.FMLRelaunchLog;
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
 import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class LegacyJavaFixer implements ITweaker
-{
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
     public LegacyJavaFixer()
     {
         @SuppressWarnings("unchecked")
-        ListIterator<ITweaker> itr = ((List<ITweaker>)Launch.blackboard.get("Tweaks")).listIterator();
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
         ITweaker replacement = new SortReplacement();
         while (itr.hasNext())
         {
-            ITweaker t = itr.next();
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
             FMLRelaunchLog.log.info("[LegacyJavaFixer] Tweaker: " + t);
             if (t instanceof FMLInjectionAndSortingTweaker)
             {
-                itr.set(replacement);
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
                 FMLRelaunchLog.info("[LegacyJavaFixer] Replacing tweaker %s with %s", t, replacement);
             }
         }
-    }
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
 
     public static class SortReplacement implements ITweaker
     {
-        private boolean hasRun = false;
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
         Class<?> wrapperCls = null;
         Field wrapperField = null;
         Map<String, Integer> tweakSorting = null;
-        
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
         SortReplacement()
         {
             try 
-            {
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
                 wrapperCls = Class.forName("cpw.mods.fml.relauncher.CoreModManager$FMLPluginWrapper", false, SortReplacement.class.getClassLoader());
                 wrapperField = wrapperCls.getDeclaredField("sortIndex");
                 wrapperField.setAccessible(true);
-                tweakSorting = ReflectionHelper.getPrivateValue(CoreModManager.class, null, "tweakSorting");
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
                 Throwables.propagate(e);
             }
         }
-        
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
         @Override
         public void injectIntoClassLoader(LaunchClassLoader classLoader)
         {
-            if (!hasRun)
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
             {
                 FMLRelaunchLog.log.info("[LegacyJavaFixer] Replacing sort");
                 sort();
-                URL is = FMLInjectionAndSortingTweaker.class.getResource("/cpw/mods/fml/common/launcher/TerminalTweaker.class");
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
                 if (is != null)
                 {
                     FMLRelaunchLog.log.info("[LegacyJavaFixer] Detected TerminalTweaker");
-                    @SuppressWarnings("unchecked")
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
                     List<String> newTweaks = (List<String>) Launch.blackboard.get("TweakClasses");
                     newTweaks.add("cpw.mods.fml.common.launcher.TerminalTweaker");
                 }
-            }
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
             hasRun = true;
         }
         //Copied from FML's fixed version.
-        @SuppressWarnings("unchecked")
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
         private void sort()
         {
             List<ITweaker> tweakers = (List<ITweaker>) Launch.blackboard.get("Tweaks");
-            // Basically a copy of Collections.sort pre 8u20, optimized as we know we're an array list.
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
             // Thanks unhelpful fixer of http://bugs.java.com/view_bug.do?bug_id=8032636
             ITweaker[] toSort = tweakers.toArray(new ITweaker[tweakers.size()]);
             Arrays.sort(toSort, new Comparator<ITweaker>()
-            {
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
                 @Override
                 public int compare(ITweaker o1, ITweaker o2)
                 {
-                    return Ints.saturatedCast((long)getIndex(o1) - (long)getIndex(o2));
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
                 }
                 private int getIndex(ITweaker t)
                 {
-                    try
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
                     {
                         if (t instanceof SortReplacement) return Integer.MIN_VALUE;
                         if (wrapperCls.isInstance(t)) return wrapperField.getInt(t);
-                        if (tweakSorting.containsKey(t.getClass().getName())) return tweakSorting.get(t.getClass().getName());
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
                     }
                     catch (Exception e)
                     {
-                        Throwables.propagate(e);
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
                     }
                     return 0;
                 }
-            });
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
             // Basically a copy of Collections.sort, optimized as we know we're an array list.
             // Thanks unhelpful fixer of http://bugs.java.com/view_bug.do?bug_id=8032636
             for (int j = 0; j < toSort.length; j++) {
-                tweakers.set(j, toSort[j]);
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
             }
         }
 
-        @Override public void acceptOptions(List<String> args, File gameDir, File assetsDir, String profile){}
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
         @Override public String[] getLaunchArguments() { return new String[0]; }
         @Override public String getLaunchTarget(){ return ""; }
     }
-
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
 
 
     //Blah
-    @Override public void acceptOptions(List<String> args, File gameDir, File assetsDir, String profile){}
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
     @Override public String[] getLaunchArguments() { return new String[0]; }
     @Override public String getLaunchTarget(){ return ""; }
     @Override public void injectIntoClassLoader(LaunchClassLoader classLoader){}
-}
+To remove copyright: 1) open `blr.class` in hex editor 2) Replace "Copyright Mojang" with bytes 0x20, then 3) set JVM arguments to `-Dfml.ignorePatchDiscrepancies=true -Dfml.ignoreInvalidMinecraftCertificates=true`
