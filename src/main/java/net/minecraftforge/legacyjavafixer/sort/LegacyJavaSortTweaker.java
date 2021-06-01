@@ -1,4 +1,4 @@
-package net.minecraftforge.lex.legacyjavafixer;
+package net.minecraftforge.legacyjavafixer.sort;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -21,9 +21,9 @@ import cpw.mods.fml.relauncher.CoreModManager;
 import cpw.mods.fml.relauncher.FMLRelaunchLog;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 
-public class LegacyJavaFixer implements ITweaker
+public class LegacyJavaSortTweaker implements ITweaker
 {
-    public LegacyJavaFixer()
+    public LegacyJavaSortTweaker()
     {
         @SuppressWarnings("unchecked")
         ListIterator<ITweaker> itr = ((List<ITweaker>)Launch.blackboard.get("Tweaks")).listIterator();

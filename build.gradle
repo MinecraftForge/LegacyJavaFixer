@@ -10,13 +10,6 @@ version = '1.0'
 group = 'net.minecraftforge.lex'
 archivesBaseName = 'legacyjavafixer'
 
-jar {
-    manifest {
-        attributes('TweakClass': 'net.minecraftforge.lex.legacyjavafixer.LegacyJavaFixer',
-                   'TweakOrder': -2147483648)
-    }
-}
-
 repositories {
     mavenCentral()
     maven {
