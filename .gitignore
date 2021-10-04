@@ -1,8 +1,22 @@
-/.settings/
-/bin/
-/build/
-/eclipse/
-/.gradle/
-/.classpath
-*.project
-/.idea/
+# exclude all
+/*
+
+# Include Important Folders
+!src/
+
+# Other Files.
+!LICENSE
+!LICENSE-header.txt
+!README.md
+!Jenkinsfile
+
+# Gradle stuff
+!gradle/
+!gradlew
+!gradlew.bat
+!build.gradle
+!settings.gradle
+
+# Include git important files
+!.gitmodules
+!.gitignore

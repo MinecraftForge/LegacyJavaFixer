@@ -4,10 +4,10 @@ plugins {
     id 'maven-publish'
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+java.toolchain.languageVersion = JavaLanguageVersion.of(7)
 
-version = '1.0'
-group = 'net.minecraftforge.lex'
+version = '2.0'
+group = 'net.minecraftforge'
 archivesBaseName = 'legacyjavafixer'
 
 repositories {
@@ -27,4 +27,29 @@ dependencies {
     implementation 'net.minecraft:launchwrapper:1.11'
     implementation 'com.google.guava:guava:16.0'
     implementation 'net.minecraftforge:forge:1.7.10-10.13.1.1225:universal'
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId project.archivesBaseName
+            version project.version
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            if (project.hasProperty('forgeMavenPassword')) {
+                credentials {
+                    username project.properties.forgeMavenUser
+                    password project.properties.forgeMavenPassword
+                }
+                url 'https://files.minecraftforge.net/maven/manage/upload'
+            } else {
+                url 'file://' + rootProject.file('repo').getAbsolutePath()
+            }
+        }
+    }
 }
