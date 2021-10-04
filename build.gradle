@@ -1,12 +1,25 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+        maven { url "https://maven.minecraftforge.net/" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradleutils:GradleUtils:1.0.+'
+    }
+}
+
 plugins {
     id 'java'
     id 'eclipse'
     id 'maven-publish'
 }
 
+apply plugin: 'net.minecraftforge.gradleutils'
+
 java.toolchain.languageVersion = JavaLanguageVersion.of(7)
 
-version = '2.0'
+version = gradleutils.tagOffsetVersion
 group = 'net.minecraftforge'
 archivesBaseName = 'legacyjavafixer'
 
